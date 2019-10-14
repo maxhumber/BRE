@@ -44,7 +44,7 @@ def scrape_product(product):
         .replace(',', '')
         .split(' ')[0]
     ) // 10 + 1
-    pages = min(pages, 50)
+    pages = min(pages, 100)
     pages = list(range(1, pages+1))
     random.shuffle(pages)
     reviews = []
@@ -85,4 +85,8 @@ for product in tqdm(product_index):
     time.sleep(random.randint(1, 10) / 10)
 
 df = pd.DataFrame(product_reviews)
-df.to_csv('data/candy.csv', index=False)
+df.to_csv('data/candy_1000.csv', index=False)
+
+
+
+#
