@@ -37,6 +37,7 @@ li = len(np.unique(i))
 # the good stuff
 interactions = csr_matrix((_ratings, (u, i)), shape=(lu, li))
 
+
 ### train test split
 from lightfm.cross_validation import random_train_test_split
 
@@ -69,3 +70,11 @@ preds = preds.sort_values('pred', ascending=False)
 
 tried = df[df['user'] == '07julia12']['product'].values
 preds[~preds['product'].isin(tried)]['product'].values[:5]
+
+
+# # TODO:
+# Automatic filtering of predictions
+# overfitting early stopper
+# builder for
+# euclidean_distances model using just sklearn
+# spotlight example
