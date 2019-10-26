@@ -17,8 +17,6 @@ def make_soup(url):
     soup = Soup(html)
     return soup
 
-# SCRAPE REVIEW
-
 def build_review_url(product, page):
     base = 'https://www.influenster.com'
     url = f'{base}/{product}?review_sort=most+recent&review_page={page}'
@@ -55,7 +53,6 @@ def scrape_product(product):
         time.sleep(random.randint(1, 10) / 10)
     return reviews
 
-# SCRAPE INDEX
 def scrape_index(category='sweets-candy-gum'):
     product_index = []
     for page in tqdm(range(1, 10+1)):
@@ -67,26 +64,19 @@ def scrape_index(category='sweets-candy-gum'):
         time.sleep(random.randint(1, 10) / 10)
     return product_index
 
-product_index = scrape_index(category='sweets-candy-gum')
-json.dump(product_index, open('data/candy_links.json', 'w'))
+if __name__ == '__main__':
 
-# SCRAPE EVERYTHING
+    product_index = scrape_index(category='sweets-candy-gum')
 
-product_index = json.load(open('data/candy_links.json', 'r'))
+    product_reviews = []
+    for product in tqdm(product_index):
+        print(f'scraping: {product}')
+        try:
+            reviews = scrape_product(product)
+            product_reviews.extend(reviews)
+        except:
+            pass
+        time.sleep(random.randint(1, 10) / 10)
 
-product_reviews = []
-for product in tqdm(product_index):
-    print(f'scraping: {product}')
-    try:
-        reviews = scrape_product(product)
-        product_reviews.extend(reviews)
-    except:
-        pass
-    time.sleep(random.randint(1, 10) / 10)
-
-df = pd.DataFrame(product_reviews)
-df.to_csv('data/candy_1000.csv', index=False)
-
-
-
-#
+    df = pd.DataFrame(product_reviews)
+    # df.to_csv('data/candy.csv', index=False)
