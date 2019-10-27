@@ -5,39 +5,49 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.sparse import csr_matrix
 from matplotlib import pyplot as plt
 
+# # TODO:
+# builder for interactions
+# euclidean_distances model using just sklearn
+# spotlight example
+
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
 from lightfm import LightFM
 from lightfm.evaluation import auc_score, precision_at_k
 
+# Quick Data Prep
+
 df = pd.read_csv('data/candy.csv')
 df.sample(1)
+# setup interactions
 
-class InteractionMachine:
-    def __init__(self):
-        self.user_encoder = LabelEncoder()
-        self.item_encoder = LabelEncoder()
+df=df.copy()
+ratings='review'
+users='user'
+items='item'
 
-    def __repr__(self):
-        return 'InteractionMachine()'
+ratings = np.array(df[ratings])
+users = np.array(df[users])
+items = np.array(df[items])
 
-    def build(self, users, items, ratings):
-        u = self.user_encoder.fit_transform(users)
-        i = self.item_encoder.fit_transform(items)
-        self.n_users = len(np.unique(u))
-        self.n_items = len(np.unique(i))
-        self.interactions = csr_matrix((ratings, (u, i)), shape=(self.n_users, self.n_items))
-        return self
+# heavy lifting encoders
+user_encoder = LabelEncoder()
+item_encoder = LabelEncoder()
 
-im = InteractionMachine()
-im.build(df['user'], df['item'], df['review'])
-im.interactions
+# preparation for the csr matrix
+u = user_encoder.fit_transform(users)
+i = item_encoder.fit_transform(items)
+lu = len(np.unique(u))
+li = len(np.unique(i))
+
+# the good stuff
+interactions = csr_matrix((ratings, (u, i)), shape=(lu, li))
 
 ### train test split
 from lightfm.cross_validation import random_train_test_split
 
-train, test = random_train_test_split(im.interactions, test_percentage=0.2)
+train, test = random_train_test_split(interactions, test_percentage=0.2)
 
 # model
 model = LightFM(loss='warp')
