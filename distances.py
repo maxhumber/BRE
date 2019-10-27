@@ -27,16 +27,15 @@ euclidean_distances(df)
 
 ##
 
-
 df = pd.read_csv("data/candy.csv")
+df = df[df['review'] >= 4]
 
-df = df.groupby(["user"])["repo"].apply(lambda x: ",".join(x))
+df = df.groupby(["user"])["item"].apply(lambda x: ",".join(x))
 df = pd.DataFrame(df)
 
 class NNRecommender:
     def __init__(
-        self, n_neighbors=10, max_features=1000, tokenizer=lambda x: x.split(",")
-    ):
+        self, n_neighbors=5, max_features=250, tokenizer=lambda x: x.split(",")):
         self.cv = CountVectorizer(tokenizer=tokenizer, max_features=max_features)
         self.nn = NearestNeighbors(n_neighbors=n_neighbors)
 
@@ -60,10 +59,15 @@ class NNRecommender:
             Xp.append(repos)
         return Xp
 
-n_neighbors = 10
-max_features = 1000
+n_neighbors = 5
+max_features = 250
 model = NNRecommender(n_neighbors, max_features)
-model.fit(df["repo"])
+model.fit(df["item"])
 
-with open("model/model.pkl", "wb") as f:
-    dill.dump(model, f)
+df.sample(1)['item'].values
+
+sweet = ["Airheads Xtremes Sweetly Sour Candy Rainbow Berry,Life Savers Five Flavor Gummies,Twizzlers Pull-N-Peel Candy Cherry"]
+peanut = ["Reese's Peanut Butter Cups Miniatures,M&Ms Peanut Chocolate Candy,Reese's Peanut Butter Big Cup"]
+
+model.predict(sweet)
+model.predict(peanut)
