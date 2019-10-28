@@ -79,4 +79,4 @@ if __name__ == '__main__':
         time.sleep(random.randint(1, 10) / 10)
 
     df = pd.DataFrame(product_reviews)
-    # df.to_csv('data/candy.csv', index=False)
+    # df.to_csv('candy.csv', index=False)
