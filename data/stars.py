@@ -29,7 +29,7 @@ def get_repo_stargazers(owner, repo):
         data = response.json()
         sg = [s["login"] for s in data]
         stargazers.extend(sg)
-        time.sleep(0.75)
+        time.sleep(0.1)
     return stargazers
 
 
@@ -61,22 +61,20 @@ def get_user_stars(user):
         data = response.json()
         s = [parse_repo(r, user) for r in data]
         stars.extend(s)
-        time.sleep(0.75)
+        time.sleep(0.1)
     return stars
 
 
 if __name__ == "__main__":
 
-    # uncomment for full script
-    owner = "maxhumber"
-    repo = "gazpacho"
-    stargazers = get_repo_stargazers(owner, repo)
+    gazpacho_stargazers = get_repo_stargazers("maxhumber", "gazpacho")
+    gif_stargazers = get_repo_stargazers("maxhumber", "gif")
+    stargazers = list(set(gazpacho_stargazers).union(gif_stargazers))
 
     all_stars = []
-    # for user in tqdm(stargazers):
-    for user in tqdm(stargazers[:3]):
+    for user in tqdm(stargazers):
         all_stars.extend(get_user_stars(user))
-        time.sleep(0.75)
 
-    # df = pd.DataFrame(all_stars)
-    # df.to_csv("data/stars.csv", encoding="utf-8", index=False)
+    import pandas as pd
+    df = pd.DataFrame(all_stars)
+    df.to_csv("data/stars.csv", encoding="utf-8", index=False)
