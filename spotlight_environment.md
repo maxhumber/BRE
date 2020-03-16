@@ -20,3 +20,12 @@ To get out:
 ```
 conda deactivate
 ```
+
+And to get back in:
+
+```
+conda activate spot
+```
+
+
+
