@@ -2,13 +2,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Repomatic 3000</title>
+    <title>Wonka 3000</title>
+    <link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
   </head>
   <body>
-    <h1>Repomatic 3000</h1>
-    <h3>For you:</h3>
-    {% for suggestion in suggestions %}
-    <p>{{ suggestion }}</p>
-    {% endfor %}
+    <main>
+      <h1>Wonka 3000</h1>
+      <h3>You should totally try...</h3>
+      {% for suggestion in suggestions %}
+      <p>{{ suggestion }}</p>
+      {% endfor %}
+    </main>
   </body>
 </html>

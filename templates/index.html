@@ -2,17 +2,17 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Repomatic 3000</title>
+    <title>Wonka 3000</title>
+    <link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
   </head>
   <body>
-    <h1>Repomatic 3000</h1>
-    <form action = "/result" method="POST">
-      <div>
-        <input type="text" name="repos" value="{{ random_repos }}" />
-      </div>
-      <div>
+    <main>
+      <h1>Wonka 3000</h1>
+      <form action="/result" method="POST">
+        <h3>Tell me what you like...</h3>
+        <textarea name="candy" style="height: 100px; width: 500px;">{{ random_candy }}</textarea>
         <input type ="submit" value="submit"/>
-      </div>
-    </form>
+      </form>
+    </main>
   </body>
 </html>
