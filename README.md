@@ -6,4 +6,13 @@
 
 Materials for the Live Online Training
 
-Presented by Max Humber on April 9, 2020
+Presented by Max Humber on September 30, 2020
+
+
+
+#### Katacoda Scenarios
+
+1. [LightFM: Build an Explicit Feedback Recommendation Engine](https://learning.oreilly.com/scenarios/lightfm-build-an/9781492087731/)
+2. [Spotlight: Build an Implicit Feedback Recommendation Engine](Spotlight: Build an Implicit Feedback Recommendation Engine)
+3. [Scikit-Learn: Build a Nearest Neighbors Recommendation Engine](https://learning.oreilly.com/scenarios/scikit-learn-build-a/9781492087755/)
+
