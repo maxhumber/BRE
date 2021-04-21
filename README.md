@@ -6,7 +6,7 @@
 
 Materials for the Live Online Training
 
-Presented by Max Humber on November 16, 2020
+Presented by Max Humber on April 23, 2021
 
 
 
@@ -20,7 +20,7 @@ Presented by Max Humber on November 16, 2020
 
 #### Bonus
 
-- [Introducing TensorFlow Recommenders (September 23, 2020)](https://blog.tensorflow.org/2020/09/introducing-tensorflow-recommenders.html)
+- [Introducing TensorFlow Recommenders](https://blog.tensorflow.org/2020/09/introducing-tensorflow-recommenders.html)
 - [TFRS + Candy](https://colab.research.google.com/drive/1RULG_6Q14QXId4rQJr6e8Urf48JRzeQy?usp=sharing)
 
 
