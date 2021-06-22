@@ -6,7 +6,7 @@
 
 Materials for the Live Online Training
 
-Presented by Max Humber on April 23, 2021
+Presented by Max Humber on June 22, 2021
 
 
 
