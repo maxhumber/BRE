@@ -2,11 +2,11 @@ import random
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.neighbors import NearestNeighbors
 from flask import Flask, request, render_template
+import cloudpickle
 
 app = Flask(__name__, template_folder="templates")
 
 with open("model.pkl", "rb") as f:
-    import cloudpickle
     model = cloudpickle.load(f)
 
 @app.route("/")
